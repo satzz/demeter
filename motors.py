@@ -97,6 +97,14 @@ def slideTo(destination):
     driveSlider(6)
   driveSlider(7)
 
+def vibe():
+   GPIO.output(vibePIN, True)
+   print 'vibe high'
+   time.sleep(0.5)
+   GPIO.output(vibePIN, False)
+   print 'vibe low'
+   time.sleep(0.5)
+
 initialize()
 while True:
   print ('sliderPosition', sliderPosition)
@@ -106,12 +114,14 @@ while True:
 
   slideTo(90)
   rotateTo(5.5)
+  vibe()
   time.sleep(0.1)
   rotateTo(8.5)
   time.sleep(0.1)
 
   slideTo(80)
   rotateTo(5.5)
+  vibe()
   time.sleep(0.1)
   rotateTo(8.5)
   time.sleep(0.1)
@@ -120,6 +130,7 @@ while True:
   rotateTo(5.5)
   time.sleep(0.1)
   rotateTo(8.5)
+  vibe()
   time.sleep(0.1)
 
 finalize()
@@ -129,31 +140,9 @@ finalize()
 
 
 
-while True:
-    input_state = GPIO.input(switchRightPIN)
-    if input_state == False:
-        print('Button Pressed')
-        time.sleep(0.2)
-
-
-
-# while True:
-#   GPIO.output(vibePIN, True)
-#   print 'vibe high'
-#   time.sleep(0.5)
-#   GPIO.output(vibePIN, False)
-#   print 'vibe low'
-#   time.sleep(0.5)
 
 
 
 
-print('>>>')
-
-while(True):
-  for line in fileinput.input():
-    duty = line.rstrip()
-    driveServo(duty)
-    print('>>>')
 
 
