@@ -24,6 +24,58 @@ slider = GPIO.PWM(sliderPIN, pwmFreq)
 rotate = GPIO.PWM(rotatePIN, pwmFreq)
 
 
+end1, end2 = 3,11
+
+duty = end1
+dduty=0.2
+sleepTime = 0.5
+
+def initialize():
+  slider.start(end1)
+
+def finalize():
+  slider.stop()
+  GPIO.cleanup()
+
+def driveServo(duty):
+  duty = float(duty) # try
+
+  print(['duty', duty])
+  # if duty<end1:
+  #   print('cancel')
+  #   return
+  # if duty>end2:
+  #   print('cancel')
+  #   return
+
+  print(['setting duty to:', duty])
+  slider.ChangeDutyCycle(duty)
+  time.sleep(sleepTime)
+
+def adjustLeft():
+  print('adjust left')
+  statusLeft = True
+  while(statusLeft):
+    statusLeft = GPIO.input(switchLeftPIN)
+    print(statusLeft)
+    driveServo(6)
+  driveServo(7)
+
+initialize()
+adjustLeft()
+finalize()
+
+while True:
+  time.sleep(sleepTime)
+  print('end')
+    
+
+
+sliderPosition = 0
+
+# def slideTo(sliderValues)
+
+
 
 while True:
     input_state = GPIO.input(switchRightPIN)
@@ -42,27 +94,6 @@ while True:
 #   time.sleep(0.5)
 
 
-end1, end2 = 3,11
-slider.start(end1)
-
-duty = end1
-dduty=0.2
-sleepTime = 0.5
-
-def driveServo(duty):
-  duty = float(duty) # try
-
-  print(['duty', duty])
-  # if duty<end1:
-  #   print('cancel')
-  #   return
-  # if duty>end2:
-  #   print('cancel')
-  #   return
-
-  print(['setting duty to:', duty])
-  slider.ChangeDutyCycle(duty)
-  time.sleep(sleepTime)
 
 
 print('>>>')
@@ -73,6 +104,4 @@ while(True):
     driveServo(duty)
     print('>>>')
 
-slider.stop()
-GPIO.cleanup()
 
