@@ -29,14 +29,17 @@ end1, end2 = 3,11
 duty = end1
 dduty=0.2
 sleepTime = 0.5
+sliderPosition = 100 
 
 def initialize():
   slider.start(end1)
+  print('initialized')
 
 def finalize():
   slider.stop()
   GPIO.cleanup()
-
+  print('finalized')
+ 
 def driveSlider(duty):
   duty = float(duty) # try
 
@@ -53,38 +56,48 @@ def driveSlider(duty):
   time.sleep(sleepTime)
 
 def adjustLeft():
-  print('adjust left')
+  print('adjusting left')
   status = True
   while(status):
     status = GPIO.input(switchLeftPIN)
     print(status)
     driveSlider(6)
   driveSlider(7)
+  print('adjusting left')
 
 def adjustRight():
-  print('adjust left')
+  global sliderPosition
+  print('adjusting right')
   status = True
   while(status):
     status = GPIO.input(switchRightPIN)
     print(status)
     driveSlider(8)
+  sliderPosition = 100
+  driveSlider(7)
+  print('adjusted right')
+ 
+def slideTo(destination):
+  global sliderPosition
+  print('sliding to', destination)
+  print ('sleepTime', sleepTime)
+  while(sliderPosition > destination):
+    time.sleep(sleepTime)
+    sliderPosition -= 10
+    print ('sliderPosition', sliderPosition)
+    driveSlider(6)
   driveSlider(7)
 
 initialize()
 while True:
-  adjustLeft()
+  print ('sliderPosition', sliderPosition)
   adjustRight()
+  print ('sliderPosition', sliderPosition)
+  slideTo(60)
 finalize()
 
-while True:
-  time.sleep(sleepTime)
-  print('end')
-    
+   
 
-
-sliderPosition = 0
-
-# def slideTo(sliderValues)
 
 
 
