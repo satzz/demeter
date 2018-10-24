@@ -37,7 +37,7 @@ def finalize():
   slider.stop()
   GPIO.cleanup()
 
-def driveServo(duty):
+def driveSlider(duty):
   duty = float(duty) # try
 
   print(['duty', duty])
@@ -54,15 +54,26 @@ def driveServo(duty):
 
 def adjustLeft():
   print('adjust left')
-  statusLeft = True
-  while(statusLeft):
-    statusLeft = GPIO.input(switchLeftPIN)
-    print(statusLeft)
-    driveServo(6)
-  driveServo(7)
+  status = True
+  while(status):
+    status = GPIO.input(switchLeftPIN)
+    print(status)
+    driveSlider(6)
+  driveSlider(7)
+
+def adjustRight():
+  print('adjust left')
+  status = True
+  while(status):
+    status = GPIO.input(switchRightPIN)
+    print(status)
+    driveSlider(8)
+  driveSlider(7)
 
 initialize()
-adjustLeft()
+while True:
+  adjustLeft()
+  adjustRight()
 finalize()
 
 while True:
