@@ -93,7 +93,12 @@ while True:
   print ('sliderPosition', sliderPosition)
   adjustRight()
   print ('sliderPosition', sliderPosition)
+  time.sleep(0.1)
+  slideTo(90)
+  time.sleep(0.1)
   slideTo(60)
+  time.sleep(0.1)
+  slideTo(30)
 finalize()
 
    
