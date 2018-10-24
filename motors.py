@@ -33,6 +33,7 @@ sliderPosition = 100
 
 def initialize():
   slider.start(end1)
+  rotate.start(end1)
   print('initialized')
 
 def finalize():
@@ -43,17 +44,25 @@ def finalize():
 def driveSlider(duty):
   duty = float(duty) # try
 
-  print(['duty', duty])
-  # if duty<end1:
-  #   print('cancel')
-  #   return
-  # if duty>end2:
-  #   print('cancel')
-  #   return
-
   print(['setting duty to:', duty])
   slider.ChangeDutyCycle(duty)
   time.sleep(sleepTime)
+
+def rotateTo(duty):
+  duty = float(duty) # try
+
+  print(['rotate to', duty])
+  if duty<end1:
+    print('cancel')
+    return
+  if duty>end2:
+    print('cancel')
+    return
+
+  print(['setting duty to:', duty])
+  rotate.ChangeDutyCycle(duty)
+  time.sleep(sleepTime)
+
 
 def adjustLeft():
   print('adjusting left')
@@ -94,11 +103,25 @@ while True:
   adjustRight()
   print ('sliderPosition', sliderPosition)
   time.sleep(0.1)
+
   slideTo(90)
+  rotateTo(5.5)
   time.sleep(0.1)
-  slideTo(60)
+  rotateTo(8.5)
   time.sleep(0.1)
-  slideTo(30)
+
+  slideTo(80)
+  rotateTo(5.5)
+  time.sleep(0.1)
+  rotateTo(8.5)
+  time.sleep(0.1)
+
+  slideTo(70)
+  rotateTo(5.5)
+  time.sleep(0.1)
+  rotateTo(8.5)
+  time.sleep(0.1)
+
 finalize()
 
    
