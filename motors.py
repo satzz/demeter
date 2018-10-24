@@ -48,6 +48,14 @@ def driveSlider(duty):
   slider.ChangeDutyCycle(duty)
   time.sleep(sleepTime)
 
+def vibe():
+   GPIO.output(vibePIN, True)
+   print 'vibe high'
+   time.sleep(0.5)
+   GPIO.output(vibePIN, False)
+   print 'vibe low'
+   time.sleep(0.5)
+
 def rotateTo(duty):
   duty = float(duty) # try
 
@@ -61,6 +69,8 @@ def rotateTo(duty):
 
   print(['setting duty to:', duty])
   rotate.ChangeDutyCycle(duty)
+  time.sleep(sleepTime)
+  vibe()
   time.sleep(sleepTime)
 
 
@@ -97,14 +107,6 @@ def slideTo(destination):
     driveSlider(6)
   driveSlider(7)
 
-def vibe():
-   GPIO.output(vibePIN, True)
-   print 'vibe high'
-   time.sleep(0.5)
-   GPIO.output(vibePIN, False)
-   print 'vibe low'
-   time.sleep(0.5)
-
 initialize()
 while True:
   print ('sliderPosition', sliderPosition)
@@ -114,14 +116,12 @@ while True:
 
   slideTo(90)
   rotateTo(5.5)
-  vibe()
   time.sleep(0.1)
   rotateTo(8.5)
   time.sleep(0.1)
 
   slideTo(80)
   rotateTo(5.5)
-  vibe()
   time.sleep(0.1)
   rotateTo(8.5)
   time.sleep(0.1)
@@ -130,7 +130,6 @@ while True:
   rotateTo(5.5)
   time.sleep(0.1)
   rotateTo(8.5)
-  vibe()
   time.sleep(0.1)
 
 finalize()
