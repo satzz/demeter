@@ -12,12 +12,18 @@ GPIO.setup(switchLeftPIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 GPIO.setup(switchRightPIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 # setup output pins
-servoPIN = 18 # slider
+sliderPIN = 18 # slider
 rotatePIN = 12
 vibePIN = 17
 GPIO.setup(vibePIN, GPIO.OUT)
-GPIO.setup(servoPIN, GPIO.OUT)
+GPIO.setup(sliderPIN, GPIO.OUT)
 GPIO.setup(rotatePIN, GPIO.OUT)
+
+pwmFreq = 50
+slider = GPIO.PWM(sliderPIN, pwmFreq)
+rotate = GPIO.PWM(rotatePIN, pwmFreq)
+
+
 
 while True:
     input_state = GPIO.input(switchRightPIN)
@@ -35,11 +41,9 @@ while True:
 #   print 'vibe low'
 #   time.sleep(0.5)
 
-pwmFreq = 50
-servo = GPIO.PWM(servoPIN, pwmFreq)
 
 end1, end2 = 3,11
-servo.start(end1)
+slider.start(end1)
 
 duty = end1
 dduty=0.2
@@ -57,7 +61,7 @@ def driveServo(duty):
   #   return
 
   print(['setting duty to:', duty])
-  servo.ChangeDutyCycle(duty)
+  slider.ChangeDutyCycle(duty)
   time.sleep(sleepTime)
 
 
@@ -69,6 +73,6 @@ while(True):
     driveServo(duty)
     print('>>>')
 
-servo.stop()
+slider.stop()
 GPIO.cleanup()
 
