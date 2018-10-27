@@ -22,7 +22,7 @@ GPIO.setup(rotatePIN, GPIO.OUT)
 pwmFreq = 50
 slider = GPIO.PWM(sliderPIN, pwmFreq)
 rotate = GPIO.PWM(rotatePIN, pwmFreq)
-sliderDutyDefault = 6.8
+sliderDutyDefault = 6.85
 
 
 end1, end2 = 3,11
