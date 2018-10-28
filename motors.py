@@ -124,21 +124,21 @@ while True:
 
   slideTo(0)
   rotateTo(3.8)
-  rotateTo(7.8)
+  rotateTo(5.8)
   _rotateTo(end1)
 
   slideTo(8)
-  rotateTo(4.8)
-  rotateTo(8.8)
-  _rotateTo(end1)
-
-  slideTo(16)
-  rotateTo(5.8)
+  rotateTo(7.8)
   rotateTo(9.8)
   _rotateTo(end1)
 
-  slideTo(24)
+  slideTo(16)
+  rotateTo(4.8)
   rotateTo(6.8)
+  _rotateTo(end1)
+
+  slideTo(24)
+  rotateTo(8.8)
   rotateTo(10.8)
   _rotateTo(end1)
 
