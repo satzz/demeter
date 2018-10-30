@@ -28,7 +28,6 @@ sliderDutyDefault = 6.85
 end1, end2 = 3,11
 
 duty = end1
-dduty=0.2
 sleepTime = 0.5
 sliderPosition = 0 
 
